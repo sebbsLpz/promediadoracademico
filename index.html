@@ -53,26 +53,26 @@
             height: 68px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.40); /* Sombra más pronunciada para el contenedor del header */
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.40);
         }
 
         .logo-container {
             background-color: white;
             padding: 5px 15px;
-            height: 100px; /* Aumentado para que sobresalga 10px arriba y abajo */
+            height: 100px;
             width: 300px;
             margin-top: 10px;
             position: relative;
             display: flex;
             align-items: center;
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.30); /* Sombra más pronunciada para el contenedor del logo */
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.30);
         }
 
         .logo-container img {
             width: 260px;
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* Sombra sutil para el logo */
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
             margin-left: 5px;
             margin-top: 10px;
         }
@@ -103,10 +103,10 @@
             flex-direction: column;
             align-items: center;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra más pronunciada para el texto */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             font-family: "Maven Pro", sans-serif;
             font-weight: 600;
-            width: 80px; /* Ancho fijo para mantener el centrado */
+            width: 80px;
         }
 
         .sia-text .sia {
@@ -115,7 +115,6 @@
             text-align: center;
             width: 100%;
             letter-spacing: 2px;
-            
         }
 
         .sia-text .alumno {
@@ -134,6 +133,7 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: margin-right 0.3s ease-in-out;
         }
 
         .section-title {
@@ -147,8 +147,9 @@
             background-color: #d2d2d2;
             border-bottom: 1px solid #c1c1c1;
             margin-bottom: 20px;
-            width: 700px;
-            height: 40px;
+            width: 100%;
+            max-width: 700px;
+            height: auto;
         }
 
         .tab {
@@ -234,8 +235,6 @@
             transition: background-color 0.3s;
         }
 
-        
-
         table {
             width: 100%;
             border-collapse: collapse;
@@ -262,6 +261,215 @@
             font-size: 18px;
             font-weight: bold;
         }
+
+        .sidebar {
+            position: fixed;
+            right: -250px;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #f5f5f5;
+            z-index: 1000;
+            transition: right 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            right: 0;
+        }
+
+        .sidebar-header {
+            background-color: #ec1c21;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-sidebar {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .menu-title {
+            background-color: #e0e0e0;
+            padding: 10px 15px;
+            color: #666;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .menu-items {
+            list-style: none;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background-color: #e0e0e0;
+        }
+
+        .menu-item.active {
+            border-left: 4px solid #ec1c21;
+        }
+
+        .menu-item i {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        .notification-bell {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ec1c21;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: white;
+            color: #ec1c21;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 0;
+            }
+
+            .logo-container {
+                width: 100%;
+                margin-top: 0;
+                justify-content: center;
+            }
+
+            .profile-container {
+                margin-top: 10px;
+                margin-right: 0;
+            }
+
+            .sia-text {
+                width: auto;
+            }
+
+            .container {
+                padding: 10px;
+                margin-right: 0;
+            }
+
+            .tabs {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+            }
+
+            .tab {
+                width: 100%;
+                border: 1px solid #c1c1c1;
+                border-bottom: none;
+            }
+
+            .tab:last-child {
+                border-bottom: 1px solid #c1c1c1;
+            }
+
+            .input-group input {
+                font-size: 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                margin-bottom: 10px;
+            }
+
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td:before {
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                content: attr(data-label);
+                font-weight: bold;
+            }
+
+            .sidebar {
+                width: 100%;
+                right: -100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sia-text .sia {
+                font-size: 32px;
+            }
+
+            .sia-text .alumno {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .result {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -279,6 +487,76 @@
             </div>
         </div>
     </header>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-sidebar" onclick="toggleMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+            <h1>SISTEMA DE INFORMACIÓN</h1>
+            <h1>ACADÉMICO</h1>
+        </div>
+        <div class="menu-title">MENÚ</div>
+        <nav class="menu-items">
+            <a href="#" class="menu-item">
+                <i class="fas fa-home"></i>
+                Inicio
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-graduation-cap"></i>
+                Datos Académicos
+            </a>
+            <a href="#" class="menu-item active">
+                <i class="fas fa-award"></i>
+                Notas
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-users"></i>
+                Pensum
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar"></i>
+                Horario
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-file-alt"></i>
+                Inclusiones
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-wallet"></i>
+                Financiación
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-heart"></i>
+                Bienestar Universitario
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-utensils"></i>
+                Restaurante
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-umbrella-beach"></i>
+                Vacacional
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-folder"></i>
+                Trámites
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-database"></i>
+                Acceso a Base de Datos
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                Salir
+            </a>
+        </nav>
+    </div>
+
+    <div class="notification-bell" onclick="toggleMenu()">
+        <i class="fas fa-bell"></i>
+        <span class="notification-count">6</span>
+    </div>
 
     <div class="container">
         <h1 class="section-title">Notas</h1>
@@ -378,6 +656,11 @@
         let subjects = [];
         let initialAverage = null;
         let initialCredits = 0;
+
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
 
         function openTab(evt, tabName) {
             const tabcontent = document.getElementsByClassName("calculator-section");
@@ -507,4 +790,3 @@
     </script>
 </body>
 </html>
-
