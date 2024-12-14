@@ -3,230 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://ufpso.edu.co/images/maquetacion_general/logo-ufpso-pie17.png" type="image/png">
-    <title>Promediador Académico</title>
+    <title>SIA UFPSO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="https://siaweb.ufpso.edu.co/public/views/imagenes/ufpso/favicon.png" type="image/png" sizes="16x16">
     <style>
+        @font-face {
+            font-family: 'Myriad Pro Bold Condensed';
+            src: url('https://fontsgeek.com/fonts/Myriad-Pro-Bold-Condensed?filename=MyriadPro-BoldCond.otf') format('opentype');
+        }
+
         :root {
-            --bg-dark: #1a1a1a;
-            --text-dark: #f0f0f0;
-            --primary-dark: #ff4d4d;
-            --secondary-dark: #ff8080;
-            --accent-dark: #ff1a1a;
+            --primary-red: #c33f3f;
+            --secondary-red: #ec1c21;
+            --background-gray: #e8e8e8;
+            --text-dark: #333333;
+            --border-color: #dddddd;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://siaweb.ufpso.edu.co/public/views/imagenes/texture/fake-brick.png');
+            background-repeat: repeat;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .header {
+            background-color: #ec1c21;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.40); /* Sombra más pronunciada para el contenedor del header */
+        }
+
+        .logo-container {
+            background-color: white;
+            padding: 5px 15px;
+            height: 100px; /* Aumentado para que sobresalga 10px arriba y abajo */
+            width: 300px;
+            margin-top: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.30); /* Sombra más pronunciada para el contenedor del logo */
+        }
+
+        .logo-container img {
+            width: 260px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* Sombra sutil para el logo */
+            margin-left: 5px;
+            margin-top: 10px;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 20px;
+        }
+
+        .profile-photo {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sia-text {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra más pronunciada para el texto */
+            font-family: "Maven Pro", sans-serif;
+            font-weight: 600;
+            width: 80px; /* Ancho fijo para mantener el centrado */
+        }
+
+        .sia-text .sia {
+            font-size: 40px;
+            line-height: 1;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 2px;
+            
+        }
+
+        .sia-text .alumno {
+            font-size: 20px;
+            line-height: 1;
+            text-align: center;
+            width: 100%;
+            margin-top: 2px;
+            letter-spacing: 0.2px;
         }
 
         .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1200px;
+            margin: 20px auto;
             padding: 20px;
-            flex-grow: 1;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
+        .section-title {
+            font-size: 24px;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: #d2d2d2;
+            border-bottom: 1px solid #c1c1c1;
+            margin-bottom: 20px;
+            width: 700px;
+            height: 40px;
         }
 
         .tab {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-            background-color: #2a2a2a;
-            border-radius: 15px;
-            padding: 10px;
-        }
-
-        .tab button {
-            background-color: transparent;
-            border: none;
-            outline: none;
-            cursor: pointer;
             padding: 10px 20px;
-            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            background-color: #d2d2d2;
+            color: #828282;
             font-size: 16px;
-            color: var(--text-dark);
-            border-radius: 10px;
-            margin: 0 5px;
+            transition: all 0.3s ease;
+            border: 1px solid #c1c1c1;
+            border-bottom: none;
+            margin-right: -1px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex: 1;
+            justify-content: center;
+            border-radius: 0;
         }
 
-        .tab button:hover {
-            background-color: #3a3a3a;
+        .tab:hover {
+            color: var(--primary-red);
         }
 
-        .tab button.active {
-            background-color: var(--primary-dark);
-            color: var(--bg-dark);
+        .tab.active {
+            color: var(--primary-red);
+            font-weight: bold;
+            border-top: 4.5px solid var(--primary-red);
+            position: relative;
+            z-index: 1;
+            background-color: #e8e8e8;
         }
 
-        .tabcontent {
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #e8e8e8;
+        }
+
+        .calculator-section {
             display: none;
-            padding: 20px;
-            animation: fadeEffect 0.5s;
-            background-color: #2a2a2a;
-            border-radius: 15px;
         }
 
-        @keyframes fadeEffect {
-            from {opacity: 0;}
-            to {opacity: 1;}
+        .calculator-section.active {
+            display: block;
         }
 
         .input-group {
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
         }
 
-        label {
+        .input-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-dark);
-        }
-
-        input[type="text"], input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #444;
-            border-radius: 5px;
-            font-size: 16px;
-            background-color: #333;
+            margin-bottom: 5px;
             color: var(--text-dark);
-            transition: border-color 0.3s ease;
         }
 
-        input[type="text"]:focus, input[type="number"]:focus {
-            border-color: var(--primary-dark);
-            outline: none;
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         button {
-            background-color: var(--primary-dark);
-            color: var(--bg-dark);
-            padding: 10px 15px;
+            padding: 8px 16px;
+            background-color: var(--primary-red);
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease, transform 0.1s ease;
+            transition: background-color 0.3s;
         }
 
-        button:hover {
-            background-color: var(--accent-dark);
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
+        
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 1rem;
-            margin-top: 1rem;
+            margin-top: 20px;
+            box-shadow: 0 1px 1px var(--primary-red);
         }
 
         th, td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #444;
         }
 
         th {
-            background-color: var(--primary-dark);
-            color: var(--bg-dark);
+            background-color: var(--primary-red);
+            color: white;
         }
 
         .result {
-            font-size: 24px;
-            font-weight: bold;
             margin-top: 20px;
-            text-align: center;
             padding: 15px;
-            border-radius: 8px;
-            background-color: var(--secondary-dark);
-            color: var(--bg-dark);
-            transition: all 0.3s ease;
-        }
-
-        .message {
+            background-color: var(--background-gray);
+            border-radius: 4px;
             text-align: center;
-            margin-top: 10px;
-            font-style: italic;
-            color: var(--secondary-dark);
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: var(--primary-dark);
-            color: var(--bg-dark);
-            margin-top: 2rem;
-        }
-
-        footer a {
-            color: var(--bg-dark);
-            text-decoration: none;
+            font-size: 18px;
             font-weight: bold;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .tab {
-                flex-direction: column;
-            }
-
-            .tab button {
-                width: 100%;
-                margin: 5px 0;
-            }
-        }
-
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        #addSubjectBtn {
-            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    <div class="container">
-        <h1>Calculadora de Notas Estudiantil</h1>
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://siaweb.ufpso.edu.co/public/views/imagenes/ufpso/logoufps.png" alt="UFPS Logo">
+        </div>
+        <div class="profile-container">
+            <div class="profile-photo">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Foto de perfil">
+            </div>
+            <div class="sia-text">
+                <span class="sia">SIA</span>
+                <span class="alumno">ALUMNO</span>
+            </div>
+        </div>
+    </header>
 
-        <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'PromedioPonderado')" id="defaultOpen">Promedio Ponderado</button>
-            <button class="tablinks" onclick="openTab(event, 'NotaFinal')">Nota Final</button>
-            <button class="tablinks" onclick="openTab(event, 'NotaNecesaria')">Nota Necesaria</button>
+    <div class="container">
+        <h1 class="section-title">Notas</h1>
+
+        <div class="tabs">
+            <button class="tab active" onclick="openTab(event, 'PromedioPonderado')">
+                <i class="fas fa-calculator"></i> Notas Actuales
+            </button>
+            <button class="tab" onclick="openTab(event, 'NotaFinal')">
+                <i class="fas fa-chart-line"></i> Notas Acumuladas
+            </button>
+            <button class="tab" onclick="openTab(event, 'NotaNecesaria')">
+                <i class="fas fa-history"></i> Promedio Histórico
+            </button>
         </div>
 
-        <div id="PromedioPonderado" class="tabcontent">
-            <h2>Calculadora de Promedio Ponderado</h2>
+        <div id="PromedioPonderado" class="calculator-section active">
             <div class="input-group">
                 <label for="initialAvg">Promedio Inicial:</label>
                 <input type="number" id="initialAvg" min="0" max="5" step="0.01">
@@ -235,7 +304,6 @@
                 <label for="initialCredits">Créditos Iniciales:</label>
                 <input type="number" id="initialCredits" min="0" step="1">
             </div>
-            <button onclick="updateInitialAverage()">Actualizar Promedio Inicial</button>
             <div class="input-group">
                 <label for="subjectName">Materia:</label>
                 <input type="text" id="subjectName">
@@ -248,96 +316,82 @@
                 <label for="subjectCredits">Créditos:</label>
                 <input type="number" id="subjectCredits" min="1" step="1">
             </div>
-            <button onclick="addSubject()" id="addSubjectBtn">Agregar Materia</button>
+            <div class="button-group">
+                <button onclick="addSubject()">Agregar Materia</button>
+                <button onclick="clearSubjects()">Limpiar Todo</button>
+            </div>
+
             <table id="subjectsTable">
-                <tr>
-                    <th>Materia</th>
-                    <th>Nota</th>
-                    <th>Créditos</th>
-                    <th>Acciones</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Nota</th>
+                        <th>Créditos</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
             </table>
-            <div class="result" id="averageResult"></div>
-            <div class="message" id="averageMessage"></div>
+            <div class="result" id="averageResult">Promedio: 0.000</div>
         </div>
 
-        <div id="NotaFinal" class="tabcontent">
-            <h2>Calculadora de Nota Final</h2>
+        <div id="NotaFinal" class="calculator-section">
             <div class="input-group">
-                <label for="parcial1">Parcial 1:</label>
+                <label for="parcial1">Parcial 1 (23.33%):</label>
                 <input type="number" id="parcial1" min="0" max="5" step="0.01">
             </div>
             <div class="input-group">
-                <label for="parcial2">Parcial 2:</label>
+                <label for="parcial2">Parcial 2 (23.33%):</label>
                 <input type="number" id="parcial2" min="0" max="5" step="0.01">
             </div>
             <div class="input-group">
-                <label for="parcial3">Tercera Nota:</label>
+                <label for="parcial3">Parcial 3 (23.33%):</label>
                 <input type="number" id="parcial3" min="0" max="5" step="0.01">
             </div>
             <div class="input-group">
-                <label for="examenFinal">Examen Final:</label>
+                <label for="examenFinal">Examen Final (30%):</label>
                 <input type="number" id="examenFinal" min="0" max="5" step="0.01">
             </div>
             <button onclick="calculateFinalGrade()">Calcular Nota Final</button>
-            <div class="result" id="finalGradeResult"></div>
-            <div class="message" id="finalGradeMessage"></div>
+            <div class="result" id="finalGradeResult">Nota Final: 0.00</div>
         </div>
 
-        <div id="NotaNecesaria" class="tabcontent">
-            <h2>Calculadora de Nota Necesaria</h2>
+        <div id="NotaNecesaria" class="calculator-section">
             <div class="input-group">
-                <label for="parcial1Needed">Parcial 1:</label>
+                <label for="parcial1Needed">Parcial 1 (23.33%):</label>
                 <input type="number" id="parcial1Needed" min="0" max="5" step="0.01">
             </div>
             <div class="input-group">
-                <label for="parcial2Needed">Parcial 2:</label>
+                <label for="parcial2Needed">Parcial 2 (23.33%):</label>
                 <input type="number" id="parcial2Needed" min="0" max="5" step="0.01">
             </div>
             <div class="input-group">
-                <label for="parcial3Needed">Tercera Nota:</label>
+                <label for="parcial3Needed">Parcial 3 (23.33%):</label>
                 <input type="number" id="parcial3Needed" min="0" max="5" step="0.01">
             </div>
             <button onclick="calculateNeededGrade()">Calcular Nota Necesaria</button>
-            <div class="result" id="neededGradeResult"></div>
-            <div class="message" id="neededGradeMessage"></div>
+            <div class="result" id="neededGradeResult">Nota Necesaria: 0.00</div>
         </div>
     </div>
 
-    <footer>
-        <p>Sígueme en Instagram: <a href="https://www.instagram.com/Lopez_rjs" target="_blank">@Lopez_rjs</a></p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         let subjects = [];
         let initialAverage = null;
         let initialCredits = 0;
 
         function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+            const tabcontent = document.getElementsByClassName("calculator-section");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
             }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
 
-        document.getElementById("defaultOpen").click();
-
-        function updateInitialAverage() {
-            initialAverage = parseFloat(document.getElementById("initialAvg").value);
-            initialCredits = parseInt(document.getElementById("initialCredits").value);
-            if (isNaN(initialAverage) || isNaN(initialCredits) || initialAverage < 0 || initialAverage > 5 || initialCredits < 0) {
-                alert("Por favor, ingrese valores válidos para el promedio inicial y los créditos.");
-                return;
+            const tablinks = document.getElementsByClassName("tab");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
             }
-            calculateAverage();
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
         }
 
         function addSubject() {
@@ -345,46 +399,31 @@
             const grade = parseFloat(document.getElementById("subjectGrade").value);
             const credits = parseInt(document.getElementById("subjectCredits").value);
 
-            if (!name || isNaN(grade) || isNaN(credits) || grade < 0 || grade > 5 || credits <= 0) {
-                alert("Por favor, ingrese valores válidos para la materia.");
-                return;
+            if (name && !isNaN(grade) && !isNaN(credits) && grade >= 0 && grade <= 5 && credits > 0) {
+                subjects.push({ name, grade, credits });
+                updateSubjectsTable();
+                calculateAverage();
+                clearInputs();
+            } else {
+                alert("Por favor, ingrese valores válidos para todos los campos.");
             }
+        }
 
-            subjects.push({ name, grade, credits });
+        function clearSubjects() {
+            subjects = [];
+            initialAverage = null;
+            initialCredits = 0;
+            document.getElementById("initialAvg").value = "";
+            document.getElementById("initialCredits").value = "";
+            clearInputs();
             updateSubjectsTable();
             calculateAverage();
+        }
 
-            // Clear input fields
+        function clearInputs() {
             document.getElementById("subjectName").value = "";
             document.getElementById("subjectGrade").value = "";
             document.getElementById("subjectCredits").value = "";
-        }
-
-        function updateSubjectsTable() {
-            const table = document.getElementById("subjectsTable");
-            // Clear existing rows except the header
-            while (table.rows.length > 1) {
-                table.deleteRow(1);
-            }
-
-            subjects.forEach((subject, index) => {
-                const row = table.insertRow(-1);
-                row.insertCell(0).textContent = subject.name;
-                row.insertCell(1).textContent = subject.grade.toFixed(2);
-                row.insertCell(2).textContent = subject.credits;
-                const actionsCell = row.insertCell(3);
-                actionsCell.innerHTML = `<button onclick="editSubject(${index})">Editar</button> <button onclick="removeSubject(${index})">Eliminar</button>`;
-            });
-        }
-
-        function editSubject(index) {
-            const subject = subjects[index];
-            document.getElementById("subjectName").value = subject.name;
-            document.getElementById("subjectGrade").value = subject.grade;
-            document.getElementById("subjectCredits").value = subject.credits;
-            subjects.splice(index, 1);
-            updateSubjectsTable();
-            calculateAverage();
         }
 
         function removeSubject(index) {
@@ -393,64 +432,62 @@
             calculateAverage();
         }
 
+        function updateSubjectsTable() {
+            const tbody = document.querySelector("#subjectsTable tbody");
+            tbody.innerHTML = "";
+
+            subjects.forEach((subject, index) => {
+                const row = tbody.insertRow();
+                row.insertCell(0).textContent = subject.name;
+                row.insertCell(1).textContent = subject.grade.toFixed(2);
+                row.insertCell(2).textContent = subject.credits;
+
+                const actionsCell = row.insertCell(3);
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Eliminar";
+                deleteButton.onclick = () => removeSubject(index);
+                actionsCell.appendChild(deleteButton);
+            });
+        }
+
         function calculateAverage() {
             let totalWeighted = 0;
             let totalCredits = 0;
+
+            initialAverage = parseFloat(document.getElementById("initialAvg").value);
+            initialCredits = parseInt(document.getElementById("initialCredits").value);
+
+            if (!isNaN(initialAverage) && !isNaN(initialCredits) && initialCredits > 0) {
+                totalWeighted += initialAverage * initialCredits;
+                totalCredits += initialCredits;
+            }
 
             subjects.forEach(subject => {
                 totalWeighted += subject.grade * subject.credits;
                 totalCredits += subject.credits;
             });
 
-            if (initialAverage !== null && initialCredits > 0) {
-                totalWeighted += initialAverage * initialCredits;
-                totalCredits += initialCredits;
-            }
-
             const average = totalCredits > 0 ? totalWeighted / totalCredits : 0;
-            const resultElement = document.getElementById("averageResult");
-            resultElement.textContent = `Promedio: ${average.toFixed(3)}`;
-            resultElement.style.backgroundColor = getColorForGrade(average);
-            
-            const messageElement = document.getElementById("averageMessage");
-            messageElement.textContent = getMessageForGrade(average);
+            document.getElementById("averageResult").textContent = `Promedio: ${average.toFixed(3)}`;
         }
 
         function calculateFinalGrade() {
-            const parcial1 = parseFloat(document.getElementById("parcial1").value);
-            const parcial2 = parseFloat(document.getElementById("parcial2").value);
-            const parcial3 = parseFloat(document.getElementById("parcial3").value);
-            const examenFinal = parseFloat(document.getElementById("examenFinal").value);
-
-            if ([parcial1, parcial2, parcial3, examenFinal].some(isNaN) || 
-                [parcial1, parcial2, parcial3, examenFinal].some(grade => grade < 0 || grade > 5)) {
-                alert("Por favor, ingrese notas válidas entre 0 y 5 para todos los campos.");
-                return;
-            }
+            const parcial1 = parseFloat(document.getElementById("parcial1").value) || 0;
+            const parcial2 = parseFloat(document.getElementById("parcial2").value) || 0;
+            const parcial3 = parseFloat(document.getElementById("parcial3").value) || 0;
+            const examenFinal = parseFloat(document.getElementById("examenFinal").value) || 0;
 
             const finalGrade = (parcial1 * 0.2333) + (parcial2 * 0.2333) + (parcial3 * 0.2333) + (examenFinal * 0.3);
-            const resultElement = document.getElementById("finalGradeResult");
-            resultElement.textContent = `Nota Final: ${finalGrade.toFixed(2)}`;
-            resultElement.style.backgroundColor = getColorForGrade(finalGrade);
-            
-            const messageElement = document.getElementById("finalGradeMessage");
-            messageElement.textContent = getMessageForGrade(finalGrade);
+            document.getElementById("finalGradeResult").textContent = `Nota Final: ${finalGrade.toFixed(2)}`;
         }
 
         function calculateNeededGrade() {
-            const parcial1 = parseFloat(document.getElementById("parcial1Needed").value);
-            const parcial2 = parseFloat(document.getElementById("parcial2Needed").value);
-            const parcial3 = parseFloat(document.getElementById("parcial3Needed").value);
-
-            if ([parcial1, parcial2, parcial3].some(isNaN) || 
-                [parcial1, parcial2, parcial3].some(grade => grade < 0 || grade > 5)) {
-                alert("Por favor, ingrese notas válidas entre 0 y 5 para todos los parciales.");
-                return;
-            }
+            const parcial1 = parseFloat(document.getElementById("parcial1Needed").value) || 0;
+            const parcial2 = parseFloat(document.getElementById("parcial2Needed").value) || 0;
+            const parcial3 = parseFloat(document.getElementById("parcial3Needed").value) || 0;
 
             let neededGrade = (3.0 - (parcial1 * 0.2333 + parcial2 * 0.2333 + parcial3 * 0.2333)) / 0.3;
-            
-            // Ajuste para la aproximación
+
             if (neededGrade > 0) {
                 let actualFinalGrade;
                 do {
@@ -462,55 +499,12 @@
             }
 
             neededGrade = Math.max(0, Math.min(5, neededGrade));
-            const resultElement = document.getElementById("neededGradeResult");
-            resultElement.textContent = `Nota Necesaria en Examen Final: ${neededGrade.toFixed(2)}`;
-            resultElement.style.backgroundColor = getColorForGrade(neededGrade);
-            
-            const messageElement = document.getElementById("neededGradeMessage");
-            messageElement.textContent = getMessageForNeededGrade(neededGrade);
+            document.getElementById("neededGradeResult").textContent = `Nota Necesaria: ${neededGrade.toFixed(2)}`;
         }
 
-        function getColorForGrade(grade) {
-            if (grade >= 4.5) return '#4CAF50';  // Verde
-            if (grade >= 4.0) return '#8BC34A';  // Verde claro
-            if (grade >= 3.5) return '#FFC107';  // Amarillo
-            if (grade >= 3.0) return '#FF9800';  // Naranja
-            return '#F44336';  // Rojo
-        }
-
-        function getMessageForGrade(grade) {
-            if (grade >= 4.5) return '¡Excelente trabajo! Sigue así, eres un estudiante sobresaliente.';
-            if (grade >= 4.0) return '¡Muy buen desempeño! Estás haciendo un gran trabajo.';
-            if (grade >= 3.5) return 'Buen trabajo, pero aún hay espacio para mejorar. ¡Sigue esforzándote!';
-            if (grade >= 3.0) return 'Has aprobado, pero podrías hacerlo mejor. ¡No te conformes!';
-            return 'Necesitas mejorar. No te desanimes, ¡con esfuerzo puedes lograrlo!';
-        }
-
-        function getMessageForNeededGrade(grade) {
-            if (grade <= 0) return '¡Felicidades! Ya has aprobado la materia.';
-            if (grade <= 3.0) return 'Estás cerca de aprobar. ¡Un último esfuerzo y lo lograrás!';
-            if (grade <= 4.0) return 'Aún puedes aprobar con un buen desempeño en el examen final. ¡Tú puedes!';
-            if (grade <= 5.0) return 'Necesitarás dar lo mejor de ti en el examen final. ¡No te rindas!';
-            return 'Lo siento, no es posible aprobar la materia en este momento.';
-        }
-
-        // Configuración de partículas
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ff4d4d" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#ff4d4d", opacity: 0.4, width: 1 },
-                move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
-                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-            }
-        });
+        // Initialize the first tab as active
+        document.getElementsByClassName("tab")[0].click();
     </script>
 </body>
 </html>
+
